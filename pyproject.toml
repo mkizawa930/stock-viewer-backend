@@ -1,0 +1,53 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "Add your description here"
+authors = [{ name = "mkizawa930", email = "m.kappa930@gmail.com" }]
+dependencies = [
+    "fastapi>=0.114.0",
+    "ta-lib>=0.4.32",
+    "numpy>=1.26.0",
+    "uvicorn>=0.30.6",
+    "yfinance>=0.2.43",
+    "joblib>=1.4.2",
+    "yahooquery>=2.3.7",
+    "isort>=5.13.2",
+    "ruff>=0.6.4",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/backend"]
+
+[tool.ruff]
+# 除外したいファイル
+# excludeを設定するとデフォルトで設定されている.venv配下などの設定が上書きされるため要注意
+extend-exclude = ["src/something.py"]
+# 行文字数
+line-length = 88
+# インデント幅
+indent-width = 4
+
+[tool.ruff.isort]
+combine-as-imports = false
+known-first-party = ["musubi_restapi"]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+split-on-trailing-comma = true
